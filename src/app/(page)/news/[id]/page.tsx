@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation"; // Import `useParams` for App Router
 import newsData from "../utils/news";
 import commentsData from "../utils/comments";
-import usersData from "../utils/users";
+import Comments from "@/components/comments";
+// import usersData from "../utils/users";
 
 // Define the types for the news article and comment data
 interface NewsArticle {
@@ -32,6 +33,15 @@ const FullNewsPage = () => {
 
   const [news, setNews] = useState<NewsArticle | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
+
+  const currentUser = {
+    userId: "02b",
+    comId: "017",
+    fullName: "Lily",
+    userProfile: "https://www.linkedin.com/in/riya-negi-8879631a9/",
+    text: "I think you have a point🤔",
+    avatarUrl: "https://ui-avatars.com/api/name=Lily&background=random",
+  };
 
   useEffect(() => {
     if (id) {
@@ -103,7 +113,7 @@ const FullNewsPage = () => {
                   tượng kiến trúc mới, nâng tầm giá trị khu đô thị.{" "}
                 </div>
 
-                <figure className="mt-4 size-full">
+                <figure className="my-4 size-full">
                   <img
                     src="https://img.iproperty.com.my/angel/750x1000-fit/wp-content/uploads/sites/7/2024/11/thumbnail_anh-x-1.jpg"
                     alt=""
@@ -202,7 +212,7 @@ const FullNewsPage = () => {
         </div>
 
         {/* Add Comment Section */}
-        <section className="mt-8">
+        {/* <section className="mt-8">
           <h3 className="text-lg font-semibold">Thêm bình luận</h3>
           <textarea
             className="w-full p-2 border border-gray-300 rounded-lg"
@@ -212,10 +222,10 @@ const FullNewsPage = () => {
           <button className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg">
             Gửi bình luận
           </button>
-        </section>
+        </section> */}
 
         {/* Comments Section */}
-        <section className="mt-8">
+        {/* <section className="mt-8">
           <h3 className="text-lg font-semibold">Bình luận</h3>
           <div>
             {comments.map((comment) => (
@@ -236,7 +246,8 @@ const FullNewsPage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
+        <Comments currentUser={currentUser} />
       </main>
     </div>
   );
