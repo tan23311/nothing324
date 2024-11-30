@@ -3,9 +3,28 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, Arial, Helvetica, sans-serif;
 }
 
+@layer base {
+  body {
+    @apply text-sm leading-normal;
+  }
+  h1 {
+    @apply text-3xl font-bold md:text-4xl;
+  }
+
+  h2 {
+    @apply text-2xl font-bold leading-normal md:text-3xl;
+  }
+
+  h3 {
+    @apply text-xl font-semibold leading-tight md:text-2xl;
+  }
+  h4 {
+    @apply text-lg font-semibold leading-tight md:text-xl;
+  }
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
