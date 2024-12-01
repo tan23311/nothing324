@@ -1,51 +1,63 @@
 import React from "react";
+import styled from "styled-components";
+import { IComment, ICommentsProps } from "@/model";
 import { CommentSection } from "react-comments-section";
 import "react-comments-section/dist/index.css";
 
-interface CommentsProps {
-  currentUser?: {
-    userId: string;
-    avatarUrl?: string;
-    name?: string;
-  };
-}
+const Container = styled.div`
+  margin: 40px 0px 60px;
 
-const Comments: React.FC<CommentsProps> = ({ currentUser }) => {
-  const commentsArray = [] as {
-    id: string;
-    text: string;
-    createdAt: Date;
-    user: { userId: string; avatarUrl?: string; name?: string };
-  }[];
+  .overlay {
+    padding: 0;
+  }
 
-  const logIn = () => {
-    console.log("Log in action triggered");
-  };
+  .comment-title {
+    font-size: 16px;
+  }
+  .hr-style {
+    margin-top: 4px;
+    border: solid 0.5px #eee;
+  }
+  .userImg > a {
+    width: 38px;
+  }
+  .form .postComment {
+    border-bottom: solid 0.5px #cecece;
+  }
+  .form .postBtn {
+    border: none;
+    background-color: #09090b;
+  }
+`;
 
-  const commentData = {
-    logIn,
-    currentUser: currentUser || {
-      currentUserId: "01a",
-      currentUserImg: "https://ui-avatars.com/api/name=Riya&background=random",
-      currentUserProfile: "https://www.linkedin.com/in/riya-negi-8879631a9/",
-      currentUserFullName: "Riya Negi",
-    },
-    commentData: commentsArray,
-    onSubmitAction: (data: any) => {
-      console.log("New comment:", data);
-    },
-    onEditAction: (data: any) => {
-      console.log("Edited comment:", data);
-    },
-    onDeleteAction: (data: any) => {
-      console.log("Deleted comment:", data);
-    },
-  };
-
+const Comments: React.FC<ICommentsProps> = ({
+  commentData,
+  onSubmitComment,
+}) => {
   return (
-    <div className="my-4">
-      <CommentSection {...commentData} />
-    </div>
+    <Container>
+      <CommentSection
+        currentUser={{
+          currentUserId: "04",
+          currentUserImg:
+            "https://ui-avatars.com/api/name=User&background=random",
+          currentUserProfile: "https://example.com/current-user",
+          currentUserFullName: "Anonymous",
+        }}
+        logIn={{
+          onLogin: () => alert("Vui lòng đăng nhập"),
+          signUpLink: "/dang-ky",
+        }}
+        commentData={commentData}
+        onSubmitAction={(data: IComment) => {
+          onSubmitComment && onSubmitComment(data);
+        }}
+        placeHolder="Nhập bình luận của bạn..."
+        currentData={(data: any) => {
+          console.log("C", data);
+        }}
+      />
+    </Container>
   );
 };
 
