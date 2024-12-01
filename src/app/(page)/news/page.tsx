@@ -1,8 +1,8 @@
 "use client"; // Add this line to mark the file as a Client Component
 
 import React, { useState } from "react";
-import newsData from "./utils/news"; // News articles data
-import usersData from "./utils/users"; // Users data
+import newsData from "../../content/news"; // News articles data
+import usersData from "../../content/users"; // Users data
 import NewCard from "./components/NewCard"; // NewCard component
 
 const NewsPage = () => {
