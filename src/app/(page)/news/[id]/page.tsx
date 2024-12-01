@@ -31,6 +31,8 @@ const FullNewsPage = () => {
   useEffect(() => {
     if (id) {
       // Fetch the news data from the API route
+      // test: http://localhost:3000/news/gem-park-loi-cho-nguoi-o-lai-cho-nguoi-dau-tu
+      // datat: src/app/content/news.json
       fetch("/api/news") // Fetch from the API route
         .then((response) => response.json())
         .then((data) => {
